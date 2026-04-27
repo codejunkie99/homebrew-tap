@@ -1,7 +1,6 @@
 class Brain < Formula
   desc "Git-backed memory layer for AI coding agents"
   homepage "https://github.com/codejunkie99/brain"
-  version "0.1.0"
   license "Apache-2.0"
 
   on_macos do
