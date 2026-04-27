@@ -1,16 +1,23 @@
 class Brain < Formula
   desc "Git-backed memory layer for AI coding agents"
   homepage "https://github.com/codejunkie99/brain"
-  url "https://github.com/codejunkie99/brain/archive/47642875fc0a996882617135d0cd8db9cf0c5c98.tar.gz"
   version "0.1.0"
-  sha256 "5932410420a6b694580b30593201c7a5be365e424e79e15656180dd93abc1009"
   license "Apache-2.0"
-  head "https://github.com/codejunkie99/brain.git", branch: "main"
 
-  depends_on "rust" => :build
+  on_macos do
+    on_arm do
+      url "https://github.com/codejunkie99/brain/releases/download/v0.1.0/brain-aarch64-apple-darwin.tar.gz"
+      sha256 "cf1505df6b688c882c67265a534443af2c24f307e1a0fd6d773ae06554cc5daf"
+    end
+
+    on_intel do
+      url "https://github.com/codejunkie99/brain/releases/download/v0.1.0/brain-x86_64-apple-darwin.tar.gz"
+      sha256 "95b9388dfcc4956d89de380a4c4cdb9fe1172f7c4a1aeaa277703c7fbac49e26"
+    end
+  end
 
   def install
-    system "cargo", "install", *std_cargo_args(path: "crates/brain-cli")
+    bin.install "brain"
   end
 
   test do
